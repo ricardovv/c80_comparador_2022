@@ -1,1 +1,4 @@
-# c80_comparador
+# c22 Comparador
+
+Ricardo Vega
+Matias Costa
