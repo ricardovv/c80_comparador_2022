@@ -1,0 +1,323 @@
+/* INTRODUCCION ////////////////////////
+    font-family: 'Merriweather', serif;
+    font-family: 'Radio Canada', sans-serif;
+*/
+
+
+:root { 
+  --cap1: red; /*.powderblue */
+  --cap2: orange; 
+  --art1: powderblue;
+  --art2: aliceblue;
+  --texto1: white;
+  --texto2: navy;
+}
+
+body{
+	background: white; 
+}
+#elwrapper {
+	width: 75%; 
+	background: white;
+	border: 10px solid white; 
+    display:flex;
+	font-family: 'Merriweather', serif;
+}
+
+/* INTRODUCCION //////////////////////////////////////////////////////////////////////////////// */
+
+#introduccion {
+	width: 75%; 
+	height: 240px; 
+	background: white;
+	margin: 5px 0px 10px 0px;
+	border: 10px solid yellow; 
+	display:block;
+	font-family: 'Merriweather', serif;
+}
+/*#constitucion_titulo, p {*/
+#constitucion_titulo {
+	width: 90%;
+	height: auto;
+	clear: right;
+	border: 0px solid red;
+	float: left; 
+	font-size: 18px;
+	font-family: 'Merriweather', serif;
+	font-weight: bold;
+	color: gray; 
+}
+h3 {
+	width: 98%;
+	height: auto;
+	clear: right;
+	border: 0px solid red;
+	margin: 5px 0px 5px 0px;
+	float: left; 
+	font-size: 16px;
+	font-family: 'Merriweather', serif;
+	font-weight: bold;
+	color: blue; 
+}
+h4 {
+	width: 98%;
+	height: auto;
+	clear: right;
+	border: 0px solid red;
+	float: left; 
+	margin: 4px 0px 4px 0px;
+	font-size: 14px;
+	font-family: 'Merriweather', serif;
+	font-weight: bold;
+	color: blue; 
+}
+p {
+	margin: 5px 0px 10px 0px;
+	float: left;
+	clear: right;	
+	font-size: 12px;
+	font-weight: normal;
+	color: grey; 
+}
+
+/* VIS COLUMNAS //////////////////////////////////////////////////////////////////////////////// */
+.columna, .columna_etiquetas {
+	width: 100%; /*46*/ 
+	background: white;
+	border: 0px solid gainsboro; 
+	margin: 4px;
+	font-size: 9px;
+}
+.columna_etiquetas {
+	width: 100%; /*46*/ 
+	animation-name: anim_entrada;
+	animation-duration: .3s;
+
+}
+.columnaTit { /* cajas capitulo arriba de cada columna*/
+	width: 90%; 
+	min-height: 18px;
+	padding: 3px 4px;
+	margin: 0px 2px 2px 0px;
+	border: 0px solid green; 
+	border-radius: 3px 3px 0px 0px; 
+	background: var(--cap1);
+	font-size: 14px;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: white; 
+}
+.columnaTit a:hover { /* cajas capitulo arriba de cada columna*/
+	background: orangered; 
+}
+.cajita { /* cajas articulos */ 
+	width: 90%; 
+	min-height: 4px;
+	padding: 3px 4px;
+	margin: 1px 0px;
+	border: 0px solid blue; 
+	border-radius: 0px 0px 3px 3px; 
+	background: var(--art1); /*indigi, blue, navy*/
+	font-size: 10px;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: navy; 
+	animation-name: anim_entrada;
+	animation-duration: .3s;
+}
+.cajita:hover { /* cajas capitulo arriba de cada columna*/
+	background: var(--art2); 
+}
+.ventanita {
+	width: 250px; /* */ 
+	min-height: 250px;
+	position: relative;
+	background: gainsboro;
+	border: 1px solid red; 
+	visibility: visible;
+}
+
+/* ETIQUETAS //////////////////////////////////////////////////////////////////////////////// */
+.etiquetas { /* cajas capitulo arriba de cada columna*/
+	width: 72px; /*34*/ 
+	height: 16px;
+	padding: 4px 4px;
+	margin: 0px 2px 3px 0px;
+	float: left;
+	clear: left;
+	border: 0px solid green; 
+	border-radius: 3px 3px 0px 0px; 
+	background: red;
+	font-size: 12px;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: white; 
+}
+.columna_etiquetas {
+	width: 78px; /*46*/ 
+	background: white;
+	border: 0px solid gainsboro; 
+	margin: 2px 2px;
+	font-size: 9px;
+}
+#etiquetas_art {
+	background: var(--art1);
+	color: var(--texto2);
+	margin: 0px 0px;
+	border-radius: 0px 0px 3px 3px; 
+	height: 18px;
+}
+
+
+/* CAP TOOLTIP DETALLE //////////////////////////////////////////////////////////////////////////////// */
+.cap_tooltip {
+	position: relative;
+ 	display: inline-block;
+}
+.cap_tooltip .cap_tooltiptext {
+	width: 240px;	height: 70px;
+	bottom: 130%;	left: 50%;
+	margin-left: -100px; /* Use half of the width (120/2 = 60), to center the tooltip */
+	padding: 10px 10px; 
+	visibility: hidden;
+	background: red;
+	border-radius: 8px;
+	position: absolute; /* Posicion del tooltip */
+	z-index: 1;
+	text-align: left;
+	color: white;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1.4;
+}
+
+.cap_tooltip:hover .cap_tooltiptext {
+  	visibility: visible;
+	animation-name: anim_entrada;
+	animation-duration: .4s;
+	box-shadow: 3px 3px 4px 1px slategrey;
+}
+
+/*triangulito abajo*/
+/*.cap_tooltip .cap_tooltiptext::after {*/
+.cap_tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: red transparent transparent transparent;
+}
+
+/* ART TOOLTIP DETALLE //////////////////////////////////////////////////////////////////////////////// */
+.art_tooltip {
+	position: relative;
+ 	display: inline-block;
+}
+.art_tooltip .art_tooltiptext {
+	width: 240px;	height: 70px;
+	top: -98px; 	left: 50%;
+	margin-left: -100px; /* mita del ancho (x/2 = 60) para centrar tooltip */
+	padding: 10px 10px; 
+	visibility: hidden; /**/
+	background-color: lightcyan;
+	border-radius: 8px;
+	position: absolute; /* Posicion del tooltip */
+	z-index: 1;
+	text-align: left;
+	color: var(--texto21);
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1.4;
+}
+.art_tooltip:hover .art_tooltiptext {
+  	visibility: visible;
+	animation-name: anim_entrada;
+	animation-duration: .3s;
+	box-shadow: 3px 3px 4px 1px slategrey;
+}
+/*triangulito abajo*/
+/*.cap_tooltip .cap_tooltiptext::after {*/
+.art_tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%;   left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: lightcyan transparent transparent transparent;
+/*	box-shadow: 3px 3px 4px 1px slategrey;*/
+}
+
+
+
+/* VENTANA CONTENIDO //////////////////////////////////////////////////////////////////////////////// */
+#ventana_modal {
+	width: 800px; height: 500px; 
+	top: 0; left: 0; 
+	position: fixed; 
+	display: none; 
+	z-index: 999;
+	padding: 12px;
+	border: gray 1px solid; 
+	border-radius: 5px;
+	overflow: auto; 
+	background-color: #FAFAFA; 
+	font-size: 12px; font-weight: normal; font-family: 'Merriweather', serif;
+	color: #000000;
+	box-shadow: 3px 3px 4px 1px slategrey;
+
+	}
+
+#ventana_modal p {
+	width: 90%;
+	margin: 2px;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.bot_cerrar {
+  margin: 2px 2px;
+  float: right;
+  padding: 6px 10px;
+  border: none;
+  background: blue; 
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  transition-duration: 0.4s;
+}
+
+.bot_cerrar {
+  background: blue; 
+  color: white; 
+  border: none;
+}
+
+.bot_cerrar:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+
+
+
+
+
+/* ANIMACIONES //////////////////////////////////////////////////////////////////////////////// */
+@keyframes anim_entrada {
+  from {opacity: 0.1;}
+  to {opacity: 1.0;}
+}
+
+
+
+
+
+
+
+

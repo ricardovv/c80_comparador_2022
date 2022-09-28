@@ -1,0 +1,267 @@
+<!DOCTYPE html> 
+<head>
+<meta charset="utf-8">
+
+<title>C22 EXPLORADOR</title>
+<!-- <script src="data/datospersonas2022.js">// codigo JS en archivo externo... </script>  -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,900;1,300;1,700" rel="stylesheet"> 
+<link rel="stylesheet" type="text/css" href="css/comp_constit_style.css" />
+<script src="data/c22_data_ok.js">// codigo JS en archivo externo... </script> 
+
+</head>
+
+
+
+<body>
+
+<div id="ventana_modal">
+	<button class="bot_cerrar" onclick="cerrarVentana();">Cerrar</button>
+	<div id="ventana_contenido">CONTENIDOS</div>
+</div>
+
+<div id="introduccion"></div>
+
+<div id="elwrapper">
+	<div class="columna_etiquetas">
+		<p id="etiqueta_cap" class="etiquetas">CAPITULOS</p>
+		</br>
+		<p id="etiquetas_art" class="etiquetas">ARTICULOS</p>	
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+var cant_datos = constitucion_2022a.constitucion_contenidos.length;
+var valorCambia;
+
+var etiquetas_cap = "Capítulos";
+var etiquetas_art = "Artículos";
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//PARA DATOS INTRODUCCION
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Funcion para cambiar valores del texto.* 
+function generador_titulos( _donde, _cual ){
+	var mostrar_intro    		    = document.getElementById(_donde); // selecciona donde se mostrara el texto. 
+	var _data_constitucion_titulo   = _cual.constitucion_titulo;
+	var _data_constitucion_subtitulo   = _cual.constitucion_subtitulo;
+	var _data_constitucion_descripcion = _cual.constitucion_descripcion;
+	var _data_constitucion_keywords = _cual.constitucion_keywords;
+	var _data_constitucion_largo    = _cual.constitucion_largo;
+    
+	// escritura en la salida...
+	// contenido  =  "<H2 id='constitucion_titulo' on" +mostrarVentana()+ ">";  
+	contenido  =  "<H2 id='constitucion_titulo'>"     +_data_constitucion_titulo+ "</H2>";  
+	contenido  +=  "<H3 id='constitucion_subtitulo'>" +_data_constitucion_subtitulo+ "</H3>";  
+	contenido  +=  "<H4 id='constitucion_descripcion'>Descripcion:</H4><p>"	+_data_constitucion_descripcion+ "</p>"; 
+	contenido  +=  "<H4 id='constitucion_keywords'>Keywords:</H4><p>"       +_data_constitucion_keywords+ "</p>"; 
+	contenido  +=  "<H4 id='constitucion_cantidadcapitulos'>Cantidad de capítulos:</H4><p>" +_data_constitucion_largo+ "</p>"; 
+	contenido  +=  "</br>"; 
+  
+	// que lo dibuje en esa salida. 
+	mostrar_intro.innerHTML = contenido; 
+} //cierre seleccionar capitulo 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// FUNCION GENERADOR 
+// datos a ingresar deben ser los datos y el index
+function generador_capitulos(_data, _cant, _index){ // lee largo e index de cada elemento
+	var cant_bloques = _cant; 
+	var wrapper = 'elwrapper';//selecciona donde ira el grafico
+	var container = document.createElement("div");//crea contenedor para las cajitas
+	container.className = "columna";
+
+	//Datos
+	var	data_cap_numero      = _data[_index].cap_numero;
+	var	data_cap_titulo      = _data[_index].cap_titulo;
+	var	data_cap_subtitulo   = _data[_index].cap_subtitulo;
+	var	data_cap_descripcion = _data[_index].cap_descripcion;
+	var	data_cap_keywords    = _data[_index].cap_keywords;
+
+
+	// Crea columna, da clase y append
+	var columnaTit = document.createElement("div");//crea contenedor para las cajitas
+	columnaTit.className = "columnaTit cap_tooltip";
+    container.append(columnaTit);
+	
+	// crea span titulo columna, da texto
+	columnaTit.append( data_cap_numero );  // nombre de categoria
+
+	//Textos tooltip capitulo
+	var columnaTitTextSpan = document.createElement("span");  
+	columnaTitTextSpan.className = "cap_tooltiptext";
+	// columnaTitTextSpan.append( data_cap_subtitulo );
+	columnaTitTextSpan.innerHTML =  data_cap_titulo +"</br>"+ data_cap_keywords;
+	columnaTit.append(columnaTitTextSpan); // agrega el span c ls textos
+    
+
+	// crea cada cajita
+	var cajita, textSpan;   
+	var cajitaText = "x";
+	document.getElementById(wrapper.replace("#", "")).appendChild(container);
+	
+
+
+	// CREA CADA CAJIA DE ARTICULOS - - - - - - - - - - - - - - - - - - - - - - 
+	function generador_articulos(_data_art, _cant_art, _index_art){ // lee largo e index de cada elemento
+	for(var i = 0; i < cant_bloques; i++) {
+		// Datos - - - - - - - - - - - - - - - - - - - - - -  
+		var	data_art_numero   = _data_art[ _index_art ].cap_elementos[i].art_numero;
+    	var	data_art_titulo   = _data_art[ _index_art ].cap_elementos[i].art_titulo;
+    	var	data_art_citados  = _data_art[ _index_art ].cap_elementos[i].art_citados;
+    	var	data_art_largo 	  = _data_art[ _index_art ].cap_elementos[i].art_largo;
+    	var	data_art_parrafos_cantidad = _data_art[ _index_art ].cap_elementos[i].art_parrafos_cantidad;
+    	var	data_art_parrafos_palabras_frecuentes = _data_art[ _index_art ].cap_elementos[i].art_parrafos_palabras_frecuentes;
+    	var	data_art_parrafos = _data_art[ _index_art ].cap_elementos[i].art_parrafos; 
+
+    	var	data_art_parrafos_b = _data_art[ _index_art ].cap_elementos; 
+    	var	i_parrafo_b = i ; 
+
+    	//Crea div por cada articulo - - - - - - - - - - - - - - - - - - - - - -  
+    	cajita = document.createElement("div");
+    	cajita.className = "cajita art_tooltip"; 
+
+		//Poner codigo para abrir ventanitas
+		cajita.setAttribute("href","javascript:void(0)"); // cancela anchor tag xdefault
+
+		//dibuja ventana modal y manda parametro  - - - - - - - - - - - - - - - - - - - - - - 
+		//cajita.onclick = mostrarVentana;	
+		let data_art_parrafos_joined = data_art_parrafos.join("#");
+		cajita.setAttribute('onclick', `mostrarVentana(
+														"${ data_art_numero }", 
+														"${ data_art_titulo }", 
+														"${ data_art_largo }", 
+														"${ data_art_parrafos_cantidad }",  											
+														"${ data_art_parrafos_joined }", 														"${ i_parrafo_b }"
+														) `); //ojo, //*"${ data_art_parrafos }"*/   
+
+//		cajita.setAttribute('onclick', `mostrarVentana( "VENTANITA OK${ data_art_numero }", "${ data_art_titulo }", "${ data_art_largo }", "${ data_art_largo }" ) `); //ojo, dejar los caractres `
+
+		// texto  - - - - - - - - - - - - - - - - - - - - - - 
+    	textSpan = document.createElement("span");
+    	textSpan.className = "art_tooltiptext";
+//    	cajitaText = _data[_index].cap_elementos[i].art_titulo; 
+    	cajitaText = data_art_titulo ; 
+    	textSpan.append( cajitaText );  // compatibilidad browser? 
+
+    	cajita.append(textSpan);
+
+    	container.append(cajita);
+	    //cajita.onmouseover = valorCambia = i;
+
+	    // tamanos cajitas articulos
+		var data_art_largo = constitucion_2022a.constitucion_contenidos[ _index_art ].cap_elementos[i].art_largo; 
+
+		// Cajitas Colapsa o no, si lleva tamano y texto o no
+		var colapsa = false;
+		var sz = 1;
+		if(colapsa == false){
+			if ( data_art_largo>=0 && data_art_largo<=5 ) {
+				sz = 1;		}
+			if ( data_art_largo>=6 && data_art_largo<=10 ) {
+				sz = 2;		}
+			if ( data_art_largo>=11 && data_art_largo<=15 ) {
+				sz = 3;		}
+			if ( data_art_largo>=16) {
+				sz = 6;		}
+			sz += sz.toString();
+			cajita.innerHTML = data_art_numero;	//numero del articulo 
+		}else{ 
+			sz = 1;
+			sz += sz.toString(); 		
+		}
+ 		cajita.style.height = sz+"px";
+
+  	} // cierre for 
+
+	}// cierre generador articulos - - - - - - - - - - - 
+
+
+	generador_articulos(_data, 1, _index); // lee largo e index de cada elemento
+
+}// cierre generador capitulos
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//FUNCION LEVANTAR VENTANITA Desde los articulos
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function mostrarVentana( _a, _b, _c, _d, _e, _index_parrrafo_b  ) {
+	// var ventanita = document.createElement("div");//crea contenedor para las cajitas
+	// ventanita.className = "ventanita";
+	// container.append(ventanita);
+	var ventana1 = document.getElementById( "ventana_modal" );
+    ventana1.style.display = "block";
+    ventana1.style.marginTop = "100px";
+    ventana1.style.left = ((document.body.clientWidth-800) / 2) + "px";
+
+	var ventana_contenido = document.getElementById( "ventana_contenido" );
+
+	// data_art_numero
+	// data_art_titulo 
+	// data_art_largo 
+	// data_art_parrafos_cantidad 
+	// data_art_parrafos 
+
+    let contenidos_modal = "";
+    let parrafo_modal = [];
+
+	contenidos_modal  +=  "<H2>Artículo nro: " 	 +_a+ "</H2>"; 
+//	contenidos_modal  +=  "<H2 id='constitucion_titulo'>"+"Artículo Título: "+_b+ "</H2></br>";  
+	contenidos_modal  +=  "<H2>Artículo Título: "+_b+ "</H2>";  
+	contenidos_modal  +=  "<H2>Artículo Párrafos: </H2>";
+	let _e_spliteado = _e.split("#");
+
+//	console.log(_e_spliteado);
+	for (var i=0; i<_e_spliteado.length; i++) {
+		contenidos_modal  +=  "<p>" +_e_spliteado[i]+ "</p></br>" 	
+	}
+	ventana_contenido.innerHTML = contenidos_modal;
+
+}
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// CERRAR VENTANA
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+function cerrarVentana() {
+	var ventana = document.getElementById( "ventana_modal" );
+    ventana.style.display = "none";
+}
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// EJECUTAR
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+for (var i = 0; i < cant_datos; i++) {
+	var datos_sub_largo	= constitucion_2022a.constitucion_contenidos[ i ].cap_elementos.length;
+ 	generador_capitulos( constitucion_2022a.constitucion_contenidos, datos_sub_largo, i );
+}
+	generador_titulos("introduccion", constitucion_2022a); // que selecconar tome este valor
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//generador( datospersonas, datospersonas[ 0 ].elementos.length, 2 );
+
+
+</script>
+
+
+</body>
+</html>

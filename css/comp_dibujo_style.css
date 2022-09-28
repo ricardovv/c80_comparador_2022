@@ -1,0 +1,68 @@
+/* ANIMACIONES //////////////////////////////////////////////////////////////////////////////// */
+
+
+/* INTRODUCCION //////////////////////////////////////////////////////////////////////////////// */
+@keyframes anim_entrada {
+  from {opacity: 0.1;}
+  to {opacity: 1.0;}
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background: yellow;
+}
+
+/* A //////////////////////////////////////////////////////////////////////////////// */
+/*.header {
+  width: 90%;
+  height: 90vh;
+  background: gainsboro;
+}
+*/
+
+#grafico_lineas {
+  width: 100%;
+  max-width: 120rem;
+  height: 800px;
+  background-color: whitesmoke;
+  position: relative;
+}
+
+/* B //////////////////////////////////////////////////////////////////////////////// */
+.cajas {
+  width: 24px;
+  height: 10px;
+  border-radius: 0%;
+  background-color: navy;
+  font-size: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+svg {
+  overflow: visible;
+  border: 1px solid red;
+  background: gainsboro;
+}
+
+
+
+
+
+
+

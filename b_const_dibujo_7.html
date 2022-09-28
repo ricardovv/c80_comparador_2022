@@ -1,0 +1,168 @@
+<!-- 
+VER 
+ARROW CREATE https://www.npmjs.com/package/arrows-svg 
+https://medium.com/explorations-in-javascript/svg-bezier-curves-in-javascript-a10aaa156cb5
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/comp_dibujo_style.css" />
+
+    <title>Pruebas de lineas</title>
+    <script src="data/c22_data_ok.js">// codigo JS en archivo externo... </script> 
+
+  </head>
+  <body>
+      
+  <div id="grafico_lineas"> <!-- ACA VAN LOS c1, c2, etc <div id="c1"  class="circle c1" style="left: 5%; bottom:15%;"  onmouseover="selecciona_cual( 1 )">1</div> -->
+
+    <svg id='svg_lineas'> <!-- ACA VAN LOS LINE<line id="line-1" style="stroke: rgb(25, 255, 255); stroke-width: 1"/> -->
+    </svg>
+
+  </div><!-- CIERRE EL_GRAFICO -->
+
+
+
+
+
+
+<script type="text/javascript">
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//PARA PRUEBAS DE INTEGRACION 
+var cant_datos = constitucion_2022a.constitucion_contenidos.length;
+for(var i = 0; i < cant_datos; i++) {
+  var caps           = constitucion_2022a.constitucion_contenidos[ i ]; 
+  var caps_largo     = constitucion_2022a.constitucion_contenidos[ i ].cap_largo; 
+  var caps_elementos = constitucion_2022a.constitucion_contenidos[ 0 ].cap_elementos; 
+  var caps_art_id    = constitucion_2022a.constitucion_contenidos[ 0 ].cap_elementos[0].art_id; 
+  var caps_art_citas = constitucion_2022a.constitucion_contenidos[ 0 ].cap_elementos[0].art_citados ; 
+}
+
+// for(var i = 0; i < cant_bloques; i++) {
+//   var data_art_numero = _data_art[ _index_art ].cap_elementos[i].art_numero;
+// }
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// 1 CREA LOS DIV C EN EL el_grafico ///////////////////////////////////////////////////////
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// const c1 = document.querySelector('#c1');
+let divs_c_donde = document.getElementById('grafico_lineas');
+var posx = "";
+var posy = "";
+for (var i=0; i<10; i++) {
+  posx = Math.floor(Math.random() * 80) + 5;//para posiiones dummy
+  posy = Math.floor(Math.random() * 80) + 5;
+  var frase = "<div id=\'c" +(i+1)+ "\' class=\'cajas\' style=\'left:" +posx+ "%; bottom:" +posy+ "%\'; onmouseover=\'crear_lineas(" +(i+0)+ ", true)\' onmouseout=\'crear_lineas(" +(i+0)+ ", false)\'>" +(i+1)+ "</div>";
+  divs_c_donde.innerHTML += frase;
+}//cierre for
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// 2 ESTRUCTUDA DE DATOS 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+let constitucion_test = [ 
+  {"art_numero":1, "art_id": c1, "art_citados":  [c2] },
+  {"art_numero":2, "art_id": c2, "art_citados":  [c1, c3] },
+  {"art_numero":3, "art_id": c3, "art_citados":  [c1, c2, c4] },
+  {"art_numero":4, "art_id": c4, "art_citados":  [c1, c2, c3, c5] },
+  {"art_numero":5, "art_id": c5, "art_citados":  [c2, c3, c4, c6, c7] },
+
+  {"art_numero":6, "art_id": c6, "art_citados":  [c1, c2, c3, c4, c5, c7] },
+  {"art_numero":7, "art_id": c7, "art_citados":  [c1, c2, c3, c4, c5, c6, c8] },
+  {"art_numero":8, "art_id": c8, "art_citados":  [c1, c2, c3, c4, c5, c6, c9, c10] },
+  {"art_numero":9, "art_id": c9, "art_citados":  [c1, c2, c3, c4, c5, c6, c7, c8, c10] },
+  {"art_numero":10,"art_id":c10, "art_citados":  [c1, c2, c3, c4, c5, c6, c7, c8, c9] },
+];
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// FUNION CREADORA DE LINEAS 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+function crear_lineas( _cual, _onoff ) {
+  
+  // 3 CREA CONSTANTES C PARA GUARDAR ELEMENTOS DEL GRAPH - - - - - - - - - - - - - - - 
+  const arts_cajas = [];
+  let lineas_donde = document.getElementById('svg_lineas')
+
+  for (var i=0; i<10; i++) {
+    // constantes para guardar elementos 
+    arts_cajas[i] = document.querySelector('#arts_cajas'+i+'');//dejar espacio '' para otra clase a agregar
+    // crea lineas en el svg
+    lineas_donde.innerHTML += "<line id=\"line-" +i+ "\"/>";
+    // creac onstantes para guardar lineas
+    //dib_lineas[i] = document.querySelector('#line-'+i);
+  }
+
+
+  // 5 Crea cosntantes para gurdar lineas - - - - - - - - - - - - - - - - - - - - - - - -
+  const dib_lineas = []; // const dline1 = document.querySelector('#line-1');
+  for (var i=0; i<10; i++) {
+    dib_lineas[i] = document.querySelector('#line-'+i);
+  } 
+
+
+  // 7 CREA LINEAS DESDDE Y HACIA SEGUN CANT ELEMENTOS - - - - - - - - - - - - - - - - - -
+  let cual = _cual; // toma valor de onmouseover 
+  let cuantos_hacia = constitucion_test[cual].art_citados.length; 
+  let midesde = '';
+  let mihacia = '';
+
+  midesde = constitucion_test[cual].art_id;
+  mihacia = constitucion_test[cual].art_citados;
+
+
+  // Dibuja o no dibuja - - - - - - - - - - - - - - - - - -
+  for (var i=0; i<cuantos_hacia; i++) { // la lista inicial son treseementos hacia 
+    // muestra lineas
+    if ( _onoff == true ) { 
+      dib_lineas[i+0].setAttribute('stroke', 'blue' ); 
+      dib_lineas[i+0].setAttribute('opacity', .5 ); 
+      dib_lineas[i+0].setAttribute('stroke-width', 1 ); // i+1 
+
+      dib_lineas[i+0].setAttribute('x1', midesde.getBoundingClientRect().x );
+      dib_lineas[i+0].setAttribute('y1', midesde.getBoundingClientRect().y );
+      dib_lineas[i+0].setAttribute('x2', mihacia[i].getBoundingClientRect().x );
+      dib_lineas[i+0].setAttribute('y2', mihacia[i].getBoundingClientRect().y ); 
+    }// cerre if
+    // saca lineas
+    else{ 
+      dib_lineas[i+0].removeAttribute('stroke'); 
+      dib_lineas[i+0].removeAttribute('opacity'); 
+      dib_lineas[i+0].removeAttribute('stroke-width'); 
+
+      dib_lineas[i+0].removeAttribute('x1' );
+      dib_lineas[i+0].removeAttribute('y1' );
+      dib_lineas[i+0].removeAttribute('x2' );
+      dib_lineas[i+0].removeAttribute('y2' ); 
+    } //cierre else
+
+  } //cierre for
+
+}// Cierre crear_lineas
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// 8 Re dibuja al resize ventana  
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+window.addEventListener("resize", (e) => { 
+    crear_lineas( cual );
+} );
+
+
+
+</script>
+
+  </body>
+</html>
