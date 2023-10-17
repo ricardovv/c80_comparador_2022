@@ -1,37 +1,50 @@
-/* INTRODUCCION ////////////////////////
+ /* INTRODUCCION ////////////////////////
     font-family: 'Merriweather', serif;
     font-family: 'Radio Canada', sans-serif;
 */
 
 
+
 :root { 
+  --bg: #fff; /*.powderblue */
   --cap1: red; /*.powderblue */
   --cap2: orange; 
   --art1: powderblue;
-  --art2: aliceblue;
+  --art2: DeepSkyBlue;
   --texto1: white;
   --texto2: navy;
+  --texto_cuerpo: #414e62;
 }
 
 body{
 	background: white; 
+
 }
+#wrapper_todo {
+	width: 92%; 
+	margin: 0 auto;
+	padding: 4px;
+	border: green 0px solid; 
+}
+
+
 #elwrapper {
-	width: 75%; 
+	width: 99%; 
 	background: white;
-	border: 10px solid white; 
-    display:flex;
+	border-top: 2px solid var(--art1); 
+	padding: 8px 0px 0px 0px; 
+  display:flex;
 	font-family: 'Merriweather', serif;
 }
 
 /* INTRODUCCION //////////////////////////////////////////////////////////////////////////////// */
 
 #introduccion {
-	width: 75%; 
-	height: 240px; 
+	width: 96%; 
+	height: 160px; 
 	background: white;
 	margin: 5px 0px 10px 0px;
-	border: 10px solid yellow; 
+	border: 0px solid yellow; 
 	display:block;
 	font-family: 'Merriweather', serif;
 }
@@ -41,11 +54,13 @@ body{
 	height: auto;
 	clear: right;
 	border: 0px solid red;
+	margin: 5px 0px 5px 0px;
 	float: left; 
-	font-size: 18px;
+	font-size: 16px;
 	font-family: 'Merriweather', serif;
 	font-weight: bold;
-	color: gray; 
+  font-style: normal;
+	color: red; 
 }
 h3 {
 	width: 98%;
@@ -54,9 +69,10 @@ h3 {
 	border: 0px solid red;
 	margin: 5px 0px 5px 0px;
 	float: left; 
-	font-size: 16px;
+	font-size: 18px;
 	font-family: 'Merriweather', serif;
 	font-weight: bold;
+	font-style: italic;
 	color: blue; 
 }
 h4 {
@@ -77,19 +93,19 @@ p {
 	clear: right;	
 	font-size: 12px;
 	font-weight: normal;
-	color: grey; 
+	font-family: 'Lato', sans-serif;
+	color: #414e62; 
 }
 
 /* VIS COLUMNAS //////////////////////////////////////////////////////////////////////////////// */
 .columna, .columna_etiquetas {
-	width: 100%; /*46*/ 
+	width: 50px; /*46 100%*/ 
 	background: white;
 	border: 0px solid gainsboro; 
-	margin: 4px;
-	font-size: 9px;
+	margin: 2px 4px ;
+	font-size: 12px;
 }
 .columna_etiquetas {
-	width: 100%; /*46*/ 
 	animation-name: anim_entrada;
 	animation-duration: .3s;
 
@@ -97,14 +113,14 @@ p {
 .columnaTit { /* cajas capitulo arriba de cada columna*/
 	width: 90%; 
 	min-height: 18px;
-	padding: 3px 4px;
+	padding: 3px 3px;
 	margin: 0px 2px 2px 0px;
 	border: 0px solid green; 
 	border-radius: 3px 3px 0px 0px; 
 	background: var(--cap1);
-	font-size: 14px;
-	font-family: sans-serif;
-	font-weight: bold;
+	font-size: 11px;
+	font-family:'Lato', sans-serif;
+	font-weight: normal;
 	color: white; 
 }
 .columnaTit a:hover { /* cajas capitulo arriba de cada columna*/
@@ -113,14 +129,14 @@ p {
 .cajita { /* cajas articulos */ 
 	width: 90%; 
 	min-height: 4px;
-	padding: 3px 4px;
+	padding: 1px 3px 2px 3px;
 	margin: 1px 0px;
 	border: 0px solid blue; 
 	border-radius: 0px 0px 3px 3px; 
 	background: var(--art1); /*indigi, blue, navy*/
-	font-size: 10px;
-	font-family: sans-serif;
-	font-weight: bold;
+	font-size: 8px;
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
 	color: navy; 
 	animation-name: anim_entrada;
 	animation-duration: .3s;
@@ -139,22 +155,22 @@ p {
 
 /* ETIQUETAS //////////////////////////////////////////////////////////////////////////////// */
 .etiquetas { /* cajas capitulo arriba de cada columna*/
-	width: 72px; /*34*/ 
+	width: 64px; /*34*/ 
 	height: 16px;
-	padding: 4px 4px;
-	margin: 0px 2px 3px 0px;
+	padding: 4px 0px 4px 3px;
+	margin: 0px 0px 3px 0px;
 	float: left;
 	clear: left;
 	border: 0px solid green; 
 	border-radius: 3px 3px 0px 0px; 
 	background: red;
-	font-size: 12px;
-	font-family: sans-serif;
-	font-weight: bold;
+	font-size: 10px;
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
 	color: white; 
 }
 .columna_etiquetas {
-	width: 78px; /*46*/ 
+	width: 64px; /*46*/ 
 	background: white;
 	border: 0px solid gainsboro; 
 	margin: 2px 2px;
@@ -178,21 +194,16 @@ p {
 	width: 240px;	height: 70px;
 	bottom: 130%;	left: 50%;
 	margin-left: -100px; /* Use half of the width (120/2 = 60), to center the tooltip */
-	padding: 10px 10px; 
+	padding: 6px 6px; 
 	visibility: hidden;
 	background: red;
 	border-radius: 8px;
 	position: absolute; /* Posicion del tooltip */
 	z-index: 1;
-	text-align: left;
-	color: white;
-	font-size: 12px;
-	font-weight: normal;
-	line-height: 1.4;
 }
 
 .cap_tooltip:hover .cap_tooltiptext {
-  	visibility: visible;
+  visibility: visible;
 	animation-name: anim_entrada;
 	animation-duration: .4s;
 	box-shadow: 3px 3px 4px 1px slategrey;
@@ -211,16 +222,38 @@ p {
   border-color: red transparent transparent transparent;
 }
 
+.cap_tooltiptext h2 {
+	padding: 6px 2px 2px 2px; 	
+	margin:  1px; 
+	text-align: left;
+	color: white;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 1.;
+	font-weight: bold;
+	font-family: 'Lato', sans-serif;
+}
+.cap_tooltiptext h3 {
+	padding: 1px 2px; 	
+	margin:  1px; 
+	text-align: left;
+	color: white;
+	font-size: 10px;
+	font-weight: normal;
+	line-height: 1.2;
+	color: red; /* var(--art2); */
+}
+
 /* ART TOOLTIP DETALLE //////////////////////////////////////////////////////////////////////////////// */
 .art_tooltip {
 	position: relative;
  	display: inline-block;
 }
 .art_tooltip .art_tooltiptext {
-	width: 240px;	height: 70px;
+	width: 220px;	height: 70px;
 	top: -98px; 	left: 50%;
 	margin-left: -100px; /* mita del ancho (x/2 = 60) para centrar tooltip */
-	padding: 10px 10px; 
+	padding: 6px 6px;
 	visibility: hidden; /**/
 	background-color: lightcyan;
 	border-radius: 8px;
@@ -255,34 +288,70 @@ p {
 
 /* VENTANA CONTENIDO //////////////////////////////////////////////////////////////////////////////// */
 #ventana_modal {
-	width: 800px; height: 500px; 
+	width: 400px; height: 540px; 
 	top: 0; left: 0; 
 	position: fixed; 
-	display: none; 
+	display: none; /* visible */ 
 	z-index: 999;
-	padding: 12px;
 	border: gray 1px solid; 
 	border-radius: 5px;
+	box-shadow: 3px 3px 4px 1px slategrey;
+	padding: 12px;
 	overflow: auto; 
 	background-color: #FAFAFA; 
-	font-size: 12px; font-weight: normal; font-family: 'Merriweather', serif;
+	font-size: 12px; 
+	font-weight: normal; 
+	font-family: 'Merriweather', serif;
 	color: #000000;
-	box-shadow: 3px 3px 4px 1px slategrey;
-
 	}
+
+#ventana_modal h2 {
+	margin: 6px 1px 18px 1px;
+	font-size: 16px; 
+	font-family: 'Merriweather', serif;
+	font-weight: normal;	
+	font-style: italic;
+	color: var(--texto_cuerpo);
+}
+
+#ventana_modal span {
+	color: blue;
+		font-weight: bold;
+}
+
+
+#ventana_modal h3 {
+	margin: 4px 1px;
+	font-size: 14px; 
+	font-weight: normal; 
+	font-family: 'Merriweather', serif;
+	font-weight: bold;
+	color: red;
+}
+
+#ventana_modal h4 {
+	margin: 4px 1px;
+	font-size: 12px;
+	font-family: 'Merriweather', serif;
+	font-weight: normal;
+	color: gray;
+}
+
 
 #ventana_modal p {
 	width: 90%;
 	margin: 2px;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: normal;
+	color: var(--texto_cuerpo);
 }
 
 .bot_cerrar {
-  margin: 2px 2px;
+  margin: -12px 2px;
   float: right;
   padding: 6px 10px;
   border: none;
+	border-radius: 0px 0px 6px 6px; 
   background: blue; 
   display: inline-block;
   cursor: pointer;
@@ -305,6 +374,39 @@ p {
 }
 
 
+
+
+/* BOTONES INTERACCION //////////////////////////////////////////////////////////////////////////////// */
+.bot_copalsar {
+  margin: 2px 2px;
+  float: right;
+  padding: 3px 4px;
+  border: none;
+	border-radius: 3px; 
+  background: blue; 
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 10px;
+  color: white;
+  transition-duration: 0.4s;
+}
+
+.bot_copalsar {
+  background: blue; 
+  color: white; 
+  border: none;
+}
+
+.bot_copalsar:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+
+
+.colapsar {
+visibility: hidden;  
+}
 
 
 

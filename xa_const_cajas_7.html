@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,900;1,300;1,700" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/comp_constit_style.css" />
 <script src="data/c22_data_ok.js">// codigo JS en archivo externo... </script> 
 
@@ -22,6 +23,10 @@
 	<div id="ventana_contenido">CONTENIDOS</div>
 </div>
 
+
+
+<div id="wrapper_todo">
+
 <div id="introduccion"></div>
 
 <div id="elwrapper">
@@ -32,6 +37,7 @@
 	</div>
 </div>
 
+</div>
 
 
 <script type="text/javascript">
@@ -59,9 +65,11 @@ function generador_titulos( _donde, _cual ){
 	// contenido  =  "<H2 id='constitucion_titulo' on" +mostrarVentana()+ ">";  
 	contenido  =  "<H2 id='constitucion_titulo'>"     +_data_constitucion_titulo+ "</H2>";  
 	contenido  +=  "<H3 id='constitucion_subtitulo'>" +_data_constitucion_subtitulo+ "</H3>";  
-	contenido  +=  "<H4 id='constitucion_descripcion'>Descripcion:</H4><p>"	+_data_constitucion_descripcion+ "</p>"; 
+	contenido  +=  "<H4 id='constitucion_descripcion'></H4><p>"	+_data_constitucion_descripcion+ "</p>"; 
+/*	
 	contenido  +=  "<H4 id='constitucion_keywords'>Keywords:</H4><p>"       +_data_constitucion_keywords+ "</p>"; 
 	contenido  +=  "<H4 id='constitucion_cantidadcapitulos'>Cantidad de capítulos:</H4><p>" +_data_constitucion_largo+ "</p>"; 
+*/
 	contenido  +=  "</br>"; 
   
 	// que lo dibuje en esa salida. 
@@ -101,7 +109,9 @@ function generador_capitulos(_data, _cant, _index){ // lee largo e index de cada
 	var columnaTitTextSpan = document.createElement("span");  
 	columnaTitTextSpan.className = "cap_tooltiptext";
 	// columnaTitTextSpan.append( data_cap_subtitulo );
-	columnaTitTextSpan.innerHTML =  data_cap_titulo +"</br>"+ data_cap_keywords;
+	columnaTitTextSpan.innerHTML =  "<h2>" + data_cap_titulo +"</h2></br>" +
+									"<h3>" + data_cap_keywords + "</h3>";
+
 	columnaTit.append(columnaTitTextSpan); // agrega el span c ls textos
     
 
@@ -168,11 +178,11 @@ function generador_capitulos(_data, _cant, _index){ // lee largo e index de cada
 		if(colapsa == false){
 			if ( data_art_largo>=0 && data_art_largo<=5 ) {
 				sz = 1;		}
-			if ( data_art_largo>=6 && data_art_largo<=10 ) {
+			if ( data_art_largo>=6 && data_art_largo<=15 ) {
 				sz = 2;		}
-			if ( data_art_largo>=11 && data_art_largo<=15 ) {
+			if ( data_art_largo>=16 && data_art_largo<=25 ) {
 				sz = 3;		}
-			if ( data_art_largo>=16) {
+			if ( data_art_largo>=26) {
 				sz = 6;		}
 			sz += sz.toString();
 			cajita.innerHTML = data_art_numero;	//numero del articulo 
@@ -205,7 +215,8 @@ function mostrarVentana( _a, _b, _c, _d, _e, _index_parrrafo_b  ) {
 	var ventana1 = document.getElementById( "ventana_modal" );
     ventana1.style.display = "block";
     ventana1.style.marginTop = "100px";
-    ventana1.style.left = ((document.body.clientWidth-800) / 2) + "px";
+//    ventana1.style.left = ((document.body.clientWidth-50) / 2) + "px";
+    ventana1.style.left = ((document.body.clientWidth / 2) - 250) + "px";
 
 	var ventana_contenido = document.getElementById( "ventana_contenido" );
 
@@ -218,10 +229,10 @@ function mostrarVentana( _a, _b, _c, _d, _e, _index_parrrafo_b  ) {
     let contenidos_modal = "";
     let parrafo_modal = [];
 
-	contenidos_modal  +=  "<H2>Artículo nro: " 	 +_a+ "</H2>"; 
+	contenidos_modal  +=  "<H3>Artículo nro: " 	 +_a+ "</H3>"; 
 //	contenidos_modal  +=  "<H2 id='constitucion_titulo'>"+"Artículo Título: "+_b+ "</H2></br>";  
-	contenidos_modal  +=  "<H2>Artículo Título: "+_b+ "</H2>";  
-	contenidos_modal  +=  "<H2>Artículo Párrafos: </H2>";
+	contenidos_modal  +=  "<H2>Artículo Título: <span>"+_b+ "</span></H2>";  
+	contenidos_modal  +=  "<H4>Artículo Párrafos: </H4>";
 	let _e_spliteado = _e.split("#");
 
 //	console.log(_e_spliteado);
