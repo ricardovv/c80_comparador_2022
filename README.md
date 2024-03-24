@@ -1,6 +1,5 @@
 # c80_comparador
 
-
 Propuesta de explorador de artículos de diferentes Constituciones de Chile y otros paises. Desarrollo parte del proyecto [C80.cl] (http://www.c80.cl) 
 
 ### TAREAS
@@ -17,4 +16,5 @@ Propuesta de explorador de artículos de diferentes Constituciones de Chile y ot
 ### EQUIPO
 
 **Ricardo Vega, profesor Escuela de Diseño y Escuela de Ingeniería UC:** Análisis, diseño y prototipado.  
-**Matías Costa, estudiante Diseño UC:** diseño de interface, UX.  
+**Verónica Gatica, Diseñadora UC:** diseño de interface, UX, Formateo y procesamiento de datos.  
+**Matías Costa, Diseñador UC:** diseño de interface, UX.  
