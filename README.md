@@ -8,6 +8,8 @@ Propuesta de explorador de artículos de diferentes Constituciones de Chile y ot
 –Cada capítulo en archivo separado. 
 –Conservar la estructura de formatos en cada archivo.
 –Nombrar los archivos segun la nomenclaturas correspondiente. 
+–Cada carpeta contiene además un archivo de metadata. 
+
 
 ### Constituciones consideradas:
 **Chile:** 1925, 1980, 2022, 2023, 2023-Expertos.

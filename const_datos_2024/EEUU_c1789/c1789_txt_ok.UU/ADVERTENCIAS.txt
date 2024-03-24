@@ -1,0 +1,7 @@
+En esta constitución se ocupa un distinto sistema de categorizacion al resto de las constituciones tratadas, pero se mantiene el mismo nombre de archivos para mantener la linealidad y legibilidad.
+
+En esta se utiliza el titulo de "Artículos" en vez de capitulos. Y un artículo puede tener multiples secciones, pero la numeración de las secciones corresponde a cada Artículo.
+Para simplificar esto, como ejemplo; El artículo 3 puede tener 3 secciones distintas, Sección 1, Sección 2 y Sección 3. Pero el artículo 10 tiene 4 secciones, entonces la numeración de estas secciones parte denuevo desde el numero 1 debido a que depende de cada artículo.
+
+
+Desde el artículo 8 empiezan las ENMIENDAS.
